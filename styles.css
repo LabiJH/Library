@@ -1,0 +1,124 @@
+:root{
+    --background-color-primary:#325453;
+    --background-color-secondary:#517174;
+}
+*{
+    padding:0;
+    margin:0;
+    font-family: "Roboto", sans-serif;
+}
+body{
+    background-color: var(--background-color-primary);
+}
+
+#buttonContainer{
+    display: flex;
+    justify-content: center;
+    padding:1rem;
+}
+
+#addBtn{
+    padding:10px;
+    outline: none;
+    border:1px solid rgb(57, 138, 57);
+    border-radius: 4px;
+    background-color: rgb(73, 190, 73);
+    color:white;
+}
+
+#addBtn:hover{
+    cursor: pointer;
+    background-color: rgb(83, 224, 83);
+}
+
+#formContainer{
+display: none;
+gap:8px;
+flex-direction: column;    
+align-items: center;
+margin-bottom: 1rem;
+}
+
+.form{
+    padding:3px;
+    border: none;
+}
+
+#submitBtn{
+    padding:5px;
+    outline: none;
+    border:1px solid rgb(57, 138, 57);
+    border-radius: 4px;
+    background-color: rgb(73, 190, 73);
+    color:white;
+}
+
+
+.bookshelf{
+    padding:5rem;
+    background-color: var(--background-color-secondary);
+    border:3px solid #dcbe87;
+    display: grid;
+    grid-template: 1fr / repeat(auto-fit, minmax(250px, 1fr));
+    gap:8px;
+}
+
+.bookCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border:3px solid #dcbe87;
+    color:white;
+    padding: 1rem;
+}
+
+.bookTitle{
+    font-weight: bolder;
+    font-size: 2.5rem;
+    align-self: flex-start;
+}
+
+.author{
+    align-self: flex-start;
+    font-style: italic;
+    font-size: small;
+}
+
+.read{
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    gap:8px;
+}
+
+.pages{
+    align-self: flex-start;
+    font-style: italic;
+    font-size: small;
+}
+
+#removeBtn{
+    padding:5px;
+    outline: none;
+    border:1px solid rgb(236, 50, 50);
+    font-size: 12px;
+    border-radius: 4px;
+    background-color: #ef5d58;
+    color:white;    
+    align-self: flex-end;
+}
+#removeBtn:hover{
+    cursor: pointer;
+    background-color:#f06863;
+}
+
+#readBtn{
+    padding: 3px 12px;
+    background-color: red;
+    border: none;
+}
+
+#readBtn:hover{
+    cursor:pointer;
+}
