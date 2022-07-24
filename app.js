@@ -10,53 +10,57 @@ let authorForm = document.querySelector("#authorForm");
 let pagesForm = document.querySelector("#pagesForm");
 let readForm = document.querySelector("#readForm");
 
-function Book(title, author, pages, read){
+/* Book Functions for DOM Manipulation*/ 
+const newCard = document.createElement("div");
+newCard.classList.add("bookCard");
+
+const titleDOM = document.createElement("div");
+const authorDOM = document.createElement("div");
+const pagesDOM = document.createElement("div");
+
+function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
 }
 
-function addBookToLibrary(book){
+function addBookToLibrary(book) {
     myLibrary.push(book); // adding the Book Object to the Library Array
 }
 
+let theHobbit = new Book("The Hobbit", "J. R. R. Tolkien", 310, false);
+let theHobbitTwo = new Book("The Hobbit", "J. R. R. Tolkien", 310, false);
+addBookToLibrary(theHobbit);
+addBookToLibrary(theHobbitTwo);
+console.table(myLibrary);
+
 /* Function for the Form Menu */
-addButton.addEventListener("click", ()=>{
-    if (formContainer.style.display == "none")
-    {
+addButton.addEventListener("click", () => {
+    if (formContainer.style.display == "none") {
         formContainer.style.display = "flex";
-    } 
-    else 
-    {
+    }
+    else {
         formContainer.style.display = "none";
     }
 })
 
-submit.addEventListener("click", ()=>{
-    const newCard = document.createElement("div");
-    newCard.classList.add("bookCard");
+window.addEventListener("load", () => {
+    for (let i = 0; i <= myLibrary.length; i++) {
+        titleDOM.innerText += myLibrary[i].title;
+        titleDOM.classList.add("bookTitle");
+        authorDOM.innerText += myLibrary[i].author;
+        authorDOM.classList.add("author");
+        pagesDOM.innerText += myLibrary[i].pages;
+        pagesDOM.classList.add("pages");
+        newCard.appendChild(titleDOM);
+        newCard.appendChild(authorDOM);
+        newCard.appendChild(pagesDOM);
+        bookshelf.appendChild(newCard);
+    }
+})
 
-    const titleDOM = document.createElement("div");
-    titleDOM.classList.add("bookTitle");
-    titleDOM.innerText += titleForm.value;
-    titleForm.value = "";
-    newCard.appendChild(titleDOM);
-
-    const authorDOM = document.createElement("div");
-    authorDOM.classList.add("author");
-    authorDOM.innerText += authorForm.value;
-    authorForm.value = "";
-    newCard.appendChild(authorDOM);
-
-    const pagesDOM = document.createElement("div");
-    pagesDOM.classList.add("pages");
-    pagesDOM.innerText += pagesForm.value;
-    pagesForm.value = "";
-    newCard.appendChild(pagesDOM);
-
-
-
-    bookshelf.appendChild(newCard);
+submit.addEventListener("click", () => {
+   let 
 
 })
