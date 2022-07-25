@@ -47,12 +47,22 @@ addButton.addEventListener("click", () => {
 
 window.addEventListener("load", () => {
     for (let i = 0; i <= myLibrary.length; i++) {
+        /* Responsive Variable Declaration on Load */ 
+        const titleDOM = document.createElement("div");
+        const authorDOM = document.createElement("div");
+        const pagesDOM = document.createElement("div");
+        const newCard = document.createElement("div");
+        newCard.classList.add("bookCard");
+
+        /* Getting Data from the Array */
         titleDOM.innerText += myLibrary[i].title;
         titleDOM.classList.add("bookTitle");
         authorDOM.innerText += myLibrary[i].author;
         authorDOM.classList.add("author");
         pagesDOM.innerText += myLibrary[i].pages;
         pagesDOM.classList.add("pages");
+        
+        /* Putting it into the DOM +*/
         newCard.appendChild(titleDOM);
         newCard.appendChild(authorDOM);
         newCard.appendChild(pagesDOM);
@@ -61,6 +71,6 @@ window.addEventListener("load", () => {
 })
 
 submit.addEventListener("click", () => {
-   let 
+   
 
 })
