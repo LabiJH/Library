@@ -10,13 +10,9 @@ let authorForm = document.querySelector("#authorForm");
 let pagesForm = document.querySelector("#pagesForm");
 let readForm = document.querySelector("#readForm");
 
-/* Book Functions for DOM Manipulation*/ 
+/* Book Functions for DOM Manipulation*/
 const newCard = document.createElement("div");
 newCard.classList.add("bookCard");
-
-const titleDOM = document.createElement("div");
-const authorDOM = document.createElement("div");
-const pagesDOM = document.createElement("div");
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -33,7 +29,7 @@ let theHobbit = new Book("The Hobbit", "J. R. R. Tolkien", 310, false);
 let theHobbitTwo = new Book("The Hobbit", "J. R. R. Tolkien", 310, false);
 addBookToLibrary(theHobbit);
 addBookToLibrary(theHobbitTwo);
-console.table(myLibrary);
+
 
 /* Function for the Form Menu */
 addButton.addEventListener("click", () => {
@@ -47,12 +43,14 @@ addButton.addEventListener("click", () => {
 
 window.addEventListener("load", () => {
     for (let i = 0; i <= myLibrary.length; i++) {
-        /* Responsive Variable Declaration on Load */ 
+        /* Responsive Variable Declaration on Load */
         const titleDOM = document.createElement("div");
         const authorDOM = document.createElement("div");
         const pagesDOM = document.createElement("div");
         const newCard = document.createElement("div");
         newCard.classList.add("bookCard");
+        newCard.setAttribute("data-id", myLibrary.length);
+
 
         /* Getting Data from the Array */
         titleDOM.innerText += myLibrary[i].title;
@@ -61,7 +59,7 @@ window.addEventListener("load", () => {
         authorDOM.classList.add("author");
         pagesDOM.innerText += myLibrary[i].pages;
         pagesDOM.classList.add("pages");
-        
+
         /* Putting it into the DOM +*/
         newCard.appendChild(titleDOM);
         newCard.appendChild(authorDOM);
@@ -71,6 +69,65 @@ window.addEventListener("load", () => {
 })
 
 submit.addEventListener("click", () => {
-   
+    /* Check if the Forms have Input */
+    if (titleForm.value != "" && authorForm.value != "" && pagesForm.value != "") {
+        let book = new Book(titleForm.value, authorForm.value, pagesForm.value, readForm.checked);
+        addBookToLibrary(book);
+
+        for (let i = myLibrary.length - 1; i <= myLibrary.length; i++) {
+            /* Responsive Variable Declaration on Load */
+            const removeBtnDOM = document.createElement("input");
+            removeBtnDOM.setAttribute("id", "removeBtn");
+            removeBtnDOM.setAttribute("type", "button");
+            removeBtnDOM.setAttribute("value", "Remove Book?");
+            const titleDOM = document.createElement("div");
+            const authorDOM = document.createElement("div");
+            const pagesDOM = document.createElement("div");
+
+            /* Read Button, extra Attributes because of the Button + Text */
+            const readDOM = document.createElement("div");
+
+            /* Read Button End */
+
+            const newCard = document.createElement("div");
+            newCard.classList.add("bookCard");
+            newCard.setAttribute("data-id", myLibrary.length);
+
+            /* Getting Data from the Array + filling the DOM Elements with Information*/
+            titleDOM.innerText += myLibrary[i].title;
+            titleDOM.classList.add("bookTitle");
+            authorDOM.innerText += myLibrary[i].author;
+            authorDOM.classList.add("author");
+            pagesDOM.innerText += myLibrary[i].pages;
+            pagesDOM.classList.add("pages");
+
+            /* Check if the Book is read to apply the specific CSS Class */
+            if (myLibrary[i].read == true) {
+                const readBTN = document.createElement("input");
+                readBTN.setAttribute("id", "readBtnTrue");
+                readBTN.setAttribute("type", "button");
+                readDOM.innerHTML += ("Read?:");     // Text besides the Button
+                readDOM.classList.add("read");
+                readDOM.appendChild(readBTN);
+            } else {
+                const readBTN = document.createElement("input");
+                readBTN.setAttribute("id", "readBtn");
+                readBTN.setAttribute("type", "button");
+                readDOM.innerHTML += ("Read?:");     // Text besides the Button
+                readDOM.classList.add("read");
+                readDOM.appendChild(readBTN);
+            }
+
+            /* Putting it into the DOM */
+            newCard.appendChild(removeBtnDOM);
+            newCard.appendChild(titleDOM);
+            newCard.appendChild(authorDOM);
+            newCard.appendChild(pagesDOM);
+            newCard.appendChild(readDOM);
+            bookshelf.appendChild(newCard);
+        }
+    } else {
+        alert("Bitte fülle die Form aus.");
+    }
 
 })
