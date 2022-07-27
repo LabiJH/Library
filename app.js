@@ -25,15 +25,9 @@ function addBookToLibrary(book) {
     myLibrary.push(book); // adding the Book Object to the Library Array
 }
 
-let theHobbit = new Book("The Hobbit", "J. R. R. Tolkien", 310, false);
-let theHobbitTwo = new Book("The Hobbit", "J. R. R. Tolkien", 310, false);
-addBookToLibrary(theHobbit);
-addBookToLibrary(theHobbitTwo);
-
-
 /* Function for the Form Menu */
 addButton.addEventListener("click", () => {
-    if (formContainer.style.display == "none") {
+    if (formContainer.style.display === "none") {
         formContainer.style.display = "flex";
     }
     else {
@@ -68,6 +62,8 @@ window.addEventListener("load", () => {
     }
 })
 
+
+
 submit.addEventListener("click", () => {
     /* Check if the Forms have Input */
     if (titleForm.value != "" && authorForm.value != "" && pagesForm.value != "") {
@@ -91,7 +87,7 @@ submit.addEventListener("click", () => {
 
             const newCard = document.createElement("div");
             newCard.classList.add("bookCard");
-            newCard.setAttribute("data-id", myLibrary.length);
+            newCard.setAttribute("data-id", myLibrary.length - 1);
 
             /* Getting Data from the Array + filling the DOM Elements with Information*/
             titleDOM.innerText += myLibrary[i].title;
@@ -129,5 +125,15 @@ submit.addEventListener("click", () => {
     } else {
         alert("Bitte fülle die Form aus.");
     }
-
+})
+/* Removing Books from the DOM + Array */
+document.addEventListener("click", function(e){
+    if(e.target && e.target.id == "removeBtn"){
+        let id = e.target.parentElement.dataset.id;
+        myLibrary.splice(id, 1);
+        console.log(id);
+        console.log(myLibrary);
+        console.log(e.target.parentElement.remove());
+    }
+    
 })
